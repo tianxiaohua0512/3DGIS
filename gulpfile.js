@@ -255,19 +255,6 @@ function generateDocumentation() {
 }
 gulp.task('generateDocumentation', generateDocumentation);
 
-gulp.task('instrumentForCoverage', gulp.series('build', function(done) {
-    var jscoveragePath = path.join('Tools', 'jscoverage-0.5.1', 'jscoverage.exe');
-    var cmdLine = jscoveragePath + ' Source Instrumented --no-instrument=./ThirdParty';
-    child_process.exec(cmdLine, function(error, stdout, stderr) {
-        if (error) {
-            console.log(stderr);
-            return done(error);
-        }
-        console.log(stdout);
-        done();
-    });
-}));
-
 gulp.task('release', gulp.series('generateStubs', combine, minifyRelease, generateDocumentation));
 
 gulp.task('makeZipFile', gulp.series('release', function() {
@@ -662,6 +649,29 @@ function setStatus(state, targetUrl, description, context) {
          }
      });
 }
+
+gulp.task('coverage', function(done) {
+    var karma = new Karma.Server({
+        configFile: karmaConfigFile,
+        preprocessors: {
+            'Source/Core/**/*.js': ['coverage'],
+            'Source/DataSources/**/*.js': ['coverage'],
+            'Source/Renderer/**/*.js': ['coverage'],
+            'Source/Scene/**/*.js': ['coverage'],
+            'Source/Shaders/**/*.js': ['coverage'],
+            'Source/Widgets/**/*.js': ['coverage'],
+            'Source/Workers/**/*.js': ['coverage']
+        },
+        reporters: ['spec', 'coverage'],
+        coverageReporter: {
+            dir: 'coverage',
+            includeAllSources: true
+        }
+    }, function(e) {
+        return done();
+    });
+    karma.start();
+});
 
 gulp.task('test', function(done) {
     var argv = yargs.argv;

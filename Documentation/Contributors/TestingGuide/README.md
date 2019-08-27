@@ -14,7 +14,7 @@ All new code should have 100% code coverage and should pass all tests.  Always r
    * [Run Only WebGL Tests](#run-only-webgl-tests)
    * [Run Only Non-WebGL Tests](#run-only-non-webgl-tests)
    * [Run All Tests against Combined File (Run All Tests against Combined File with Debug Code Removed)]()
-   * [Run All Tests with Code Coverage (Build 'instrumentForCoverage' First)](#run-all-tests-against-combined-file-run-all-tests-against-combined-file-with-debug-code-removed)
+   * [Run All Tests with Coverage](#run-all-tests-against-combined-file-run-all-tests-against-combined-file-with-debug-code-removed)
    * [Running Tests on the Command Line with Karma](#running-tests-on-the-command-line-with-karma)
 * [Testing Previous Versions of CesiumJS](#testing-previous-versions-of-cesium)
 * [`testfailure` Label for Issues](#testfailure-label-for-issues)
@@ -108,7 +108,9 @@ The **Run All Tests against Combined File with Debug Code Removed** is the same 
 
 See the [Build Guide](https://github.com/AnalyticalGraphicsInc/cesium/blob/master/Documentation/Contributors/BuildGuide/README.md#build-scripts) for all the CesiumJS build options.
 
-### Run All Tests with Code Coverage (Build 'instrumentForCoverage' First)
+### Run All Tests with Coverage
+
+TODO
 
 [JSCoverage](http://siliconforks.com/jscoverage/) is used for code coverage.  It is especially important to have outstanding code coverage since JavaScript doesn't have a compiler and linker to catch early errors.
 
